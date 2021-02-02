@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
-#include "libraries/DHT.h"
-#include "libraries/ThingSpeak.h"
+#include "DHT.h"
+#include "ThingSpeak.h"
 
-#define DHTTYPE DHT11
+#define DHTTYPE DHT22
 #define DHTPIN  5
 
 const char* API_KEY = "YourKey"; // Put your ThingSpeak API KEY here
