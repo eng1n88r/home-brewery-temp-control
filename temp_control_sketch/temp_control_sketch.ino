@@ -23,7 +23,7 @@ unsigned long channelNumber = 1000001; // Put your channel number here
 // higher the value.  The default for a 16mhz AVR is a value of 6.  For an
 // Arduino Due that runs at 84mhz a value of 30 works.
 // This is for the ESP8266 processor on ESP-01
-DHT dht(DHTPIN, DHTTYPE, 11);
+DHT dht(DHTPIN, DHTTYPE);
 WiFiClient client;
 
 void setup() {
@@ -70,7 +70,12 @@ void loop() {
            ThingSpeak.setField(4, hif);
            ThingSpeak.setField(5, hic);
 
-           ThingSpeak.writeFields(channelNumber, API_KEY);
+           int x = ThingSpeak.writeFields(channelNumber, API_KEY);
+           if(x == 200){
+            Serial.println("Channel update successful.");
+           } else {
+            Serial.println("Problem updating channel. HTTP error code " + String(x));
+           }
         }
 
         client.stop();
